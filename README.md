@@ -1,7 +1,7 @@
 # 📊 Mathematical Modeling and Computing – Personal Fork
 
 > 🚀 This is my enhanced and modified version of a classmate's project. It includes additional mathematical methods, comments, and improved explanations.  
-> Originally forked from: [https://github.com/classmate-username/repo-name](https://github.com/classmate-username/repo-name)
+> Originally forked from: (https://github.com/Muqtasid-Khan/Mathematical-Modeling-and-Computing)
 
 ---
 
