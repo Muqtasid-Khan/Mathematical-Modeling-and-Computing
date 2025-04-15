@@ -35,40 +35,62 @@ def newton_raphson(f, df, x0, tol=1e-7, max_iter=100):
     return None
 
 # Example usage
-f = lambda x: x**3 - x - 2
-df = lambda x: 3*x**2 - 1
-root = newton_raphson(f, df, 1.5)
-print(f"Root: {root}")
-Regular Falsi Method
+def newton_raphson(f, df, x0, tol=1e-7, max_iter=100):
+    """
+    Finds the root of a function using the Newton-Raphson method.
+
+    Args:
+        f (callable): The function for which to find the root.
+        df (callable): The derivative of the function f.
+        x0 (float): The initial guess for the root.
+        tol (float, optional): The tolerance for convergence. Defaults to 1e-7.
+        max_iter (int, optional): The maximum number of iterations. Defaults to 100.
+
+    Returns:
+        float or None: The approximate root if found, otherwise None.
+    """
+    xn = x0
+    for n in range(max_iter):
+        fxn = f(xn)
+        if abs(fxn) < tol:
+            print(f"Newton-Raphson: Found solution after {n} iterations.")
+            return xn
+        dfxn = df(xn)
+        if dfxn == 0:
+            print("Newton-Raphson: Zero derivative. No solution found.")
+            return None
+        xn = xn - fxn / dfxn
+    print("Newton-Raphson: Exceeded maximum iterations.")
+    return None
+
+# Example usage for Newton-Raphson
+f_nr = lambda x: x**3 - x - 2
+df_nr = lambda x: 3*x**2 - 1
+root_nr = newton_raphson(f_nr, df_nr, 1.5)
+print(f"Newton-Raphson Root: {root_nr}")
+
+print("\nRegular Falsi Method")
 def regular_falsi(f, a, b, tol=1e-7, max_iter=100):
+    """
+    Finds the root of a function using the Regular Falsi method (False Position).
+
+    Args:
+        f (callable): The function for which to find the root.
+        a (float): The lower bound of the initial interval.
+        b (float): The upper bound of the initial interval.
+        tol (float, optional): The tolerance for convergence. Defaults to 1e-7.
+        max_iter (int, optional): The maximum number of iterations. Defaults to 100.
+
+    Returns:
+        float or None: The approximate root if found, otherwise None.
+    """
     if f(a) * f(b) >= 0:
-        print("Function must change signs on interval.")
+        print("Regular Falsi: Function must change signs on the interval [a, b].")
         return None
 
     for n in range(max_iter):
         c = b - f(b) * (b - a) / (f(b) - f(a))
         if abs(f(c)) < tol:
-            print(f"Found solution after {n} iterations.")
+            print(f"Regular Falsi: Found solution after {n} iterations.")
             return c
-        if f(c) * f(a) < 0:
-            b = c
-        else:
-            a = c
-    print("Exceeded maximum iterations.")
-    return None
-
-# Example usage
-f = lambda x: x**3 - x - 2
-root = regular_falsi(f, 1, 2)
-print(f"Root: {root}")
-👩‍💻 Maintainer
-Sania Irshad
-🤝 Contributions
-Feel free to:
-
-Add more methods
-
-Improve code
-
-Suggest real-world models
 
